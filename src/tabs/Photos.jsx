@@ -36,7 +36,7 @@ export const Photos = () => {
 
   return (
     <>
-      <Form onSearch={handleSubmit} />
+      <Form onSubmit={handleSubmit} />
       {photos.length === 0 && (
         <Text textAlign="center">Let`s begin search 🔎</Text>
       )}

@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import style from './Form.module.css';
 import { FiSearch } from 'react-icons/fi';
+import { nanoid } from 'nanoid';
 
-export const Form = ({ onSubmit }) => {
+export const FormTodos = ({ onSubmit }) => {
   const [input, setInput] = useState('');
 
   const handleChange = e => {
@@ -11,7 +12,9 @@ export const Form = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit(input);
+    onSubmit({ input, id: nanoid() });
+    console.log({ input, id: nanoid() });
+    setInput('');
   };
 
   return (
