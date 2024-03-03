@@ -1,10 +1,16 @@
 import { Text } from 'components';
 import { FormTodos } from '../components/FormTodos/FormTodos';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TodoList } from 'components';
+// import { parseJSON } from 'date-fns';
 
 export const Todos = () => {
-  const [todos, setTodos] = useState([]);
+  const getTodosStorage = () => {
+    const todosStorage = window.localStorage.getItem('todos');
+    return todosStorage !== null ? JSON.parse(todosStorage) : [];
+  };
+
+  const [todos, setTodos] = useState(getTodosStorage);
 
   const onSubmit = newTodo => {
     setTodos(prevTodo => {
@@ -18,6 +24,10 @@ export const Todos = () => {
       return prevTodo.filter(todo => todo.id != todoId);
     });
   };
+
+  useEffect(() => {
+    window.localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <>
