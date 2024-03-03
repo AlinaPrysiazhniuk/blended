@@ -2,7 +2,6 @@ import { Text } from 'components';
 import { FormTodos } from '../components/FormTodos/FormTodos';
 import { useEffect, useState } from 'react';
 import { TodoList } from 'components';
-// import { parseJSON } from 'date-fns';
 
 export const Todos = () => {
   const getTodosStorage = () => {
@@ -13,9 +12,8 @@ export const Todos = () => {
   const [todos, setTodos] = useState(getTodosStorage);
 
   const onSubmit = newTodo => {
-    setTodos(prevTodo => {
-      return [...prevTodo, newTodo];
-    });
+    setTodos(prevTodo => [...prevTodo, newTodo]);
+    // setNumber(prevNumber => prevNumber + 1);
     console.log(todos);
   };
 
