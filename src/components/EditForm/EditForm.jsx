@@ -8,7 +8,7 @@ export const EditForm = ({
   submitText,
   close,
   isVisibleText,
-  // updateTodos,
+  updateTodos,
 }) => {
   const [textNew, setTextNew] = useState(text);
   const [textIsVisible, setTextIsVisible] = useState(isVisibleText);
@@ -21,7 +21,7 @@ export const EditForm = ({
   const handleSubmit = e => {
     e.preventDefault();
     submitText(textNew);
-    // updateTodos({ id: text.id, input: textNew });
+    updateTodos({ id: text.id, input: textNew });
     setTextIsVisible(!isVisibleText);
   };
 

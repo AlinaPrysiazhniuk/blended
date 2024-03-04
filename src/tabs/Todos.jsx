@@ -16,10 +16,11 @@ export const Todos = () => {
   };
 
   const updateTodos = updatedTodo => {
-    const updatedTodos = todos.map(todo =>
-      todo.id === updatedTodo.id ? updatedTodo : todo,
-    );
-    setTodos(updatedTodos);
+    setTodos(prevTodos => {
+      return prevTodos.map(todo =>
+        todo.id === updatedTodo.id ? updatedTodo : todo,
+      );
+    });
   };
 
   const deleteTodo = todoId => {
