@@ -1,4 +1,3 @@
-// import { Text } from 'components';
 import { Form, PhotosGallery, Button, Loader, Text } from 'components';
 import { useEffect, useState } from 'react';
 import { getPhotos } from 'apiService/photos';

@@ -1,7 +1,7 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { Section, Container } from 'components';
-// import { Photos } from 'tabs/Photos';
+import { Photos } from 'tabs/Photos';
 import { Todos } from 'tabs/Todos';
 
 export const App = () => {
@@ -10,13 +10,13 @@ export const App = () => {
       <Container>
         <Tabs>
           <TabList>
-            {/* <Tab>Photos</Tab> */}
+            <Tab>Photos</Tab>
             <Tab>Todos</Tab>
           </TabList>
 
-          {/* <TabPanel>
+          <TabPanel>
             <Photos />
-          </TabPanel> */}
+          </TabPanel>
           <TabPanel>
             <Todos />
           </TabPanel>
