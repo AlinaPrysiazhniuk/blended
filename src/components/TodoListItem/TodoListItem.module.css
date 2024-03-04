@@ -1,5 +1,5 @@
 .box {
-  padding: 20px;
+  padding: 40px;
   background-color: var(--color-light);
   border-radius: 8px;
 
@@ -8,6 +8,8 @@
 
   position: relative;
   width: 100%;
+  /* width: 400px; */
+  min-height: 80px;
   height: 100%;
 }
 
@@ -41,9 +43,9 @@
   color: var(--color-lightBlue);
 }
 
-.textInput {
+/* .textInput {
   width: 100%;
   padding: 10px;
   border: 1px solid #dfdfdf;
   outline: none;
-}
+} */

@@ -31,9 +31,7 @@ export const TodoListItem = ({ todo: { id, input }, onDelete, number }) => {
         <Text textAlign="center" marginBottom="20">
           Todo #{number}
         </Text>
-        <Text className={style.textInput}>
-          {newTodo ? newTodo.input : input}
-        </Text>
+        <Text textAlign="center">{newTodo ? newTodo.input : input}</Text>
         <button
           className={style.deleteButton}
           type="button"

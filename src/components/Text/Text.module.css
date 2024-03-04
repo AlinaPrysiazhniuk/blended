@@ -3,6 +3,8 @@
   font-weight: 700;
 
   text-align: start;
+  width: 100%;
+  word-wrap: break-word;
 }
 .end {
   composes: text;

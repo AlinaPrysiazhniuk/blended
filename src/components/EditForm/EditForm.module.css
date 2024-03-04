@@ -1,7 +1,9 @@
 .form {
   width: 100%;
+
   margin: 0 auto;
   position: relative;
+  background-color: silver;
   /* margin-bottom: 80px; */
 }
 
@@ -23,6 +25,7 @@
   color: var(--color-dark);
   font-weight: 300;
   letter-spacing: 0.03em;
+  white-space: pre-wrap;
 
   &::placeholder {
     font-weight: 200;
