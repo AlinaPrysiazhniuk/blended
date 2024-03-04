@@ -15,6 +15,13 @@ export const Todos = () => {
     setTodos(prevTodo => [...prevTodo, newTodo]);
   };
 
+  const updateTodos = updatedTodo => {
+    const updatedTodos = todos.map(todo =>
+      todo.id === updatedTodo.id ? updatedTodo : todo,
+    );
+    setTodos(updatedTodos);
+  };
+
   const deleteTodo = todoId => {
     setTodos(prevTodo => {
       return prevTodo.filter(todo => todo.id != todoId);
@@ -32,7 +39,13 @@ export const Todos = () => {
         <Text textAlign="center">There are no any todos ...</Text>
       )}
 
-      {todos.length > 0 && <TodoList todos={todos} onDelete={deleteTodo} />}
+      {todos.length > 0 && (
+        <TodoList
+          todos={todos}
+          onDelete={deleteTodo}
+          updateTodos={updateTodos}
+        />
+      )}
     </>
   );
 };

@@ -5,24 +5,36 @@ import { RiDeleteBinLine, RiEdit2Line } from 'react-icons/ri';
 import { EditForm } from '../EditForm/EditForm';
 import { useState } from 'react';
 
-export const TodoListItem = ({ todo: { id, input }, onDelete, number }) => {
+export const TodoListItem = ({
+  todo: { id, input },
+  onDelete,
+  number,
+  updateTodos,
+}) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [newTodo, setNewTodo] = useState(); //стан для запису відредагованого тексту
+  const [newTodo, setNewTodo] = useState({ id, input }); //стан для запису відредагованого тексту
+  const [textIsVisible, setTextIsVisible] = useState(true);
 
   const openEditForm = () => {
     setIsVisible(true);
+    setTextIsVisible(false);
   };
 
   const closeEditForm = () => {
     setIsVisible(false);
+    setTextIsVisible(true);
   };
 
   //функція для оновлення тексту тодо, запису його в обєкт тодо та відправвки в ліст ітем
   const changeText = newText => {
-    const updateTodo = { id, input: newText }; //робимо заміну тексту тудушки в обєкті todo
+    const updatedTodo = { input: newText, id }; //робимо заміну тексту тудушки в обєкті todo
+    updateTodos(updatedTodo);
+    console.log(updateTodos);
     setIsVisible(false); //форму редагування робимо не видимою
-    setNewTodo(updateTodo); //записуємо в стан тудушки новий обєкт який при
+    setNewTodo(updatedTodo); //записуємо в стан тудушки новий обєкт який при
     //натисканін кнопки "зберегти" оновиться значення стану тудушки, це буде уже newTodo
+    setTextIsVisible(true);
+    // localStorage.setItem(`todo_${id}`, JSON.stringify(updatedTodo));
   };
 
   return (
@@ -31,7 +43,9 @@ export const TodoListItem = ({ todo: { id, input }, onDelete, number }) => {
         <Text textAlign="center" marginBottom="20">
           Todo #{number}
         </Text>
-        <Text textAlign="center">{newTodo ? newTodo.input : input}</Text>
+        {textIsVisible && (
+          <Text textAlign="center">{newTodo ? newTodo.input : input}</Text>
+        )}
         <button
           className={style.deleteButton}
           type="button"
@@ -54,6 +68,8 @@ export const TodoListItem = ({ todo: { id, input }, onDelete, number }) => {
             text={newTodo ? newTodo.input : input}
             submitText={changeText}
             close={closeEditForm}
+            isVisibleText={textIsVisible}
+            updateTodos={updateTodos}
           />
         )}
       </div>

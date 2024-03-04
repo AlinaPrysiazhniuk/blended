@@ -3,9 +3,15 @@ import { MdOutlineCancel } from 'react-icons/md';
 import style from './EditForm.module.css';
 import { useState } from 'react';
 
-export const EditForm = ({ text, submitText, close }) => {
+export const EditForm = ({
+  text,
+  submitText,
+  close,
+  isVisibleText,
+  // updateTodos,
+}) => {
   const [textNew, setTextNew] = useState(text);
-
+  const [textIsVisible, setTextIsVisible] = useState(isVisibleText);
   //натискаючи кнопку зберегти ми повинні оновити значення текстового поля і передати його у тодолістітем
 
   const changeText = e => {
@@ -15,6 +21,8 @@ export const EditForm = ({ text, submitText, close }) => {
   const handleSubmit = e => {
     e.preventDefault();
     submitText(textNew);
+    // updateTodos({ id: text.id, input: textNew });
+    setTextIsVisible(!isVisibleText);
   };
 
   return (
