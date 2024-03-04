@@ -11,7 +11,7 @@ export const TodoListItem = ({
   number,
   updateTodos,
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false); //стан що зберігає видимість форми
   const [newTodo, setNewTodo] = useState({ id, input }); //стан для запису відредагованого тексту
   const [textIsVisible, setTextIsVisible] = useState(true);
 
@@ -27,9 +27,8 @@ export const TodoListItem = ({
 
   //функція для оновлення тексту тодо, запису його в обєкт тодо та відправвки в ліст ітем
   const changeText = newText => {
-    const updatedTodo = { input: newText, id }; //робимо заміну тексту тудушки в обєкті todo
+    const updatedTodo = { id, input: newText }; //робимо заміну тексту тудушки в обєкті todo
     updateTodos(updatedTodo);
-    console.log(updateTodos);
     setIsVisible(false); //форму редагування робимо не видимою
     setNewTodo(updatedTodo); //записуємо в стан тудушки новий обєкт який при
     //натисканін кнопки "зберегти" оновиться значення стану тудушки, це буде уже newTodo

@@ -12,7 +12,6 @@ export const EditForm = ({
 }) => {
   const [textNew, setTextNew] = useState(text);
   const [textIsVisible, setTextIsVisible] = useState(isVisibleText);
-  //натискаючи кнопку зберегти ми повинні оновити значення текстового поля і передати його у тодолістітем
 
   const changeText = e => {
     setTextNew(e.target.value);
@@ -23,6 +22,7 @@ export const EditForm = ({
     submitText(textNew);
     updateTodos({ id: text.id, input: textNew });
     setTextIsVisible(!isVisibleText);
+    console.log(textNew);
   };
 
   return (
