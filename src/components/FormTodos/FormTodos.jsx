@@ -13,7 +13,6 @@ export const FormTodos = ({ onSubmit }) => {
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit({ input, id: nanoid() });
-    console.log({ input, id: nanoid() });
     setInput('');
   };
 
