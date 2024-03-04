@@ -13,7 +13,6 @@ export const Todos = () => {
 
   const onSubmit = newTodo => {
     setTodos(prevTodo => [...prevTodo, newTodo]);
-    // setNumber(prevNumber => prevNumber + 1);
     console.log(todos);
   };
 

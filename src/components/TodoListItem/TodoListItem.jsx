@@ -7,22 +7,23 @@ import { useState } from 'react';
 
 export const TodoListItem = ({ todo: { id, input }, onDelete, number }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [newTodo, setNewTodo] = useState();
-  // const [number, setNumber] = useState(1);
+  const [newTodo, setNewTodo] = useState(); //стан для запису відредагованого тексту
 
+  //функція для відкривання форми редагуванн
   const openEditForm = () => {
     setIsVisible(true);
   };
 
-  const changeText = newText => {
-    const updateTodo = { id, input: newText };
+  const closeEditForm = () => {
     setIsVisible(false);
-    handleUpdateTodo(updateTodo);
   };
 
-  const handleUpdateTodo = updateTodo => {
-    // setNumber(prevNumber => prevNumber + 1);
-    setNewTodo(updateTodo);
+  //функція для оновлення тексту тодо, запису його в обєкт тодо та відправвки в ліст ітем
+  const changeText = newText => {
+    const updateTodo = { id, input: newText }; //робимо заміну тексту тудушки в обєкті todo
+    setIsVisible(false); //форму редагування робимо не видимою
+    setNewTodo(updateTodo); //записуємо в стан тудушки новий обєкт який при
+    //натисканін кнопки "зберегти" оновиться значення стану тудушки, це буде уже newTodo
   };
 
   return (
@@ -32,6 +33,8 @@ export const TodoListItem = ({ todo: { id, input }, onDelete, number }) => {
           Todo #{number}
         </Text>
         <Text className={style.textInput}>
+          {/* якщо стан newTodo пустий, то записуємо  
+          а ні, то записуємо в текстове поле значення із обєкту що прийшов в тодо  */}
           {newTodo ? newTodo.input : input}
         </Text>
         <button
@@ -44,14 +47,22 @@ export const TodoListItem = ({ todo: { id, input }, onDelete, number }) => {
           <RiDeleteBinLine size={24} />
         </button>
 
+        {/* кнопка для редагування todo */}
         <button
           className={style.editButton}
           type="button"
-          onClick={openEditForm}
+          onClick={openEditForm} //при клікові на кнопку форма редагування отримує
+          // стан visible = true  і відкривається
         >
           <RiEdit2Line size={24} />
         </button>
-        {isVisible && <EditForm text={input} submitText={changeText} />}
+        {isVisible && (
+          <EditForm
+            text={newTodo ? newTodo.input : input}
+            submitText={changeText}
+            close={closeEditForm}
+          />
+        )}
       </div>
     </GridItem>
   );
