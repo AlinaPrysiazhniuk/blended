@@ -29,11 +29,11 @@ export const TodoListItem = ({
   const changeText = newText => {
     const updatedTodo = { id, input: newText }; //робимо заміну тексту тудушки в обєкті todo
     updateTodos(updatedTodo);
+    console.log(updatedTodo);
     setIsVisible(false); //форму редагування робимо не видимою
     setNewTodo(updatedTodo); //записуємо в стан тудушки новий обєкт який при
     //натисканін кнопки "зберегти" оновиться значення стану тудушки, це буде уже newTodo
     setTextIsVisible(true);
-    // localStorage.setItem(`todo_${id}`, JSON.stringify(updatedTodo));
   };
 
   return (
@@ -68,7 +68,6 @@ export const TodoListItem = ({
             submitText={changeText}
             close={closeEditForm}
             isVisibleText={textIsVisible}
-            updateTodos={updateTodos}
           />
         )}
       </div>

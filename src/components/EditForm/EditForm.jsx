@@ -3,13 +3,7 @@ import { MdOutlineCancel } from 'react-icons/md';
 import style from './EditForm.module.css';
 import { useState } from 'react';
 
-export const EditForm = ({
-  text,
-  submitText,
-  close,
-  isVisibleText,
-  updateTodos,
-}) => {
+export const EditForm = ({ text, submitText, close, isVisibleText }) => {
   const [textNew, setTextNew] = useState(text);
   const [textIsVisible, setTextIsVisible] = useState(isVisibleText);
 
@@ -20,9 +14,7 @@ export const EditForm = ({
   const handleSubmit = e => {
     e.preventDefault();
     submitText(textNew);
-    updateTodos({ id: text.id, input: textNew });
     setTextIsVisible(!isVisibleText);
-    console.log(textNew);
   };
 
   return (
