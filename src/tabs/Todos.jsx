@@ -13,7 +13,6 @@ export const Todos = () => {
 
   const onSubmit = newTodo => {
     setTodos(prevTodo => [...prevTodo, newTodo]);
-    console.log(todos);
   };
 
   const deleteTodo = todoId => {
