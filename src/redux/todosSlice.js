@@ -33,4 +33,3 @@ const slice = createSlice({
 export const { addTodos, deleteTodos, updateTodos } = slice.actions;
 export default slice.reducer;
 export const selectTodos = state => state.todos.items;
-export const selectCurrentTodo = state => state.todos.currentTodo;
