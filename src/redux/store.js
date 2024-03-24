@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import todosReducer from './todosSlice';
 import filterReducer from './filterSlice';
+import photosReducer from './photosSlice';
 import storage from 'redux-persist/lib/storage';
 import {
   persistStore,
@@ -27,6 +28,7 @@ export const store = configureStore({
   reducer: {
     todos: persistedContactsReducer,
     filter: filterReducer,
+    photos: photosReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

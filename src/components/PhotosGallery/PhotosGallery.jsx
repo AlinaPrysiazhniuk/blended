@@ -1,10 +1,14 @@
 import { PhotosGalleryItem } from '../PhotosGalleryItem/PhotosGalleryItem';
 import { Grid } from '../Grid/Grid';
+import { useSelector } from 'react-redux';
+import { selectPhotos } from '../../redux/photosSlice';
 
-export const PhotosGallery = ({ gallery }) => {
+export const PhotosGallery = () => {
+  const photosArr = useSelector(selectPhotos);
+
   return (
     <Grid>
-      {gallery.map(({ id, avg_color, alt, src }) => {
+      {photosArr.map(({ id, avg_color, alt, src }) => {
         return (
           <PhotosGalleryItem
             key={id}
