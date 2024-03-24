@@ -2,9 +2,12 @@ import { useState } from 'react';
 import style from './Form.module.css';
 import { FiSearch } from 'react-icons/fi';
 import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { addTodos } from '../../redux/todosSlice';
 
-export const FormTodos = ({ onSubmit }) => {
+export const FormTodos = () => {
   const [input, setInput] = useState('');
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     setInput(e.target.value);
@@ -12,7 +15,9 @@ export const FormTodos = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit({ id: nanoid(), input });
+    dispatch(addTodos({ id: nanoid(), text: input }));
+    console.log({ id: nanoid(), text: input });
+    // onSubmit({ id: nanoid(), input });
     setInput('');
   };
 

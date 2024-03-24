@@ -2,10 +2,12 @@ import { RiSaveLine } from 'react-icons/ri';
 import { MdOutlineCancel } from 'react-icons/md';
 import style from './EditForm.module.css';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateTodos } from '../../redux/todosSlice';
 
-export const EditForm = ({ text, submitText, close, isVisibleText }) => {
-  const [textNew, setTextNew] = useState(text);
-  const [textIsVisible, setTextIsVisible] = useState(isVisibleText);
+export const EditForm = ({ initialValue, todoId, close }) => {
+  const [textNew, setTextNew] = useState(initialValue);
+  const dispatch = useDispatch();
 
   const changeText = e => {
     setTextNew(e.target.value);
@@ -13,8 +15,8 @@ export const EditForm = ({ text, submitText, close, isVisibleText }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    submitText(textNew);
-    setTextIsVisible(!isVisibleText);
+    dispatch(updateTodos({ id: todoId, text: textNew }));
+    close();
   };
 
   return (

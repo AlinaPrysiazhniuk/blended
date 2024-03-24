@@ -1,19 +1,21 @@
+import { useSelector } from 'react-redux';
 import { Grid } from '../Grid/Grid';
 import { TodoListItem } from '../TodoListItem/TodoListItem';
+import { selectTodos } from '../../redux/todosSlice';
+import { selectFilterName } from '../../redux/filterSlice';
 
-export const TodoList = ({ todos, onDelete, updateTodos }) => {
+export const TodoList = () => {
+  const todos = useSelector(selectTodos);
+  const filteredName = useSelector(selectFilterName);
+
+  const filteredTodos = todos.filter(todo =>
+    todo.text.toLowerCase().includes(filteredName.toLowerCase()),
+  );
+
   return (
     <Grid>
-      {todos.map((todo, index) => {
-        return (
-          <TodoListItem
-            key={todo.id}
-            todo={todo}
-            onDelete={onDelete}
-            number={index + 1}
-            updateTodos={updateTodos}
-          />
-        );
+      {filteredTodos.map((todo, index) => {
+        return <TodoListItem key={todo.id} todo={todo} number={index + 1} />;
       })}
     </Grid>
   );
