@@ -3,10 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const slice = createSlice({
   name: 'todos',
   initialState: {
-    items: [
-      { id: 1, text: 'hello' },
-      { id: 2, text: 'qwe' },
-    ],
+    items: [],
     currentTodo: null,
   },
   reducers: {
@@ -21,13 +18,14 @@ const slice = createSlice({
       state.items = state.items.filter(item => item.id !== action.payload);
     },
     updateTodos(state, action) {
-      //   console.log(action.payload);
-      const taskIndex = state.items.findIndex(
-        item => item.id === action.payload.id,
+      state.currentTodo = action.payload;
+      state.items = state.items.map(item =>
+        item.id === state.currentTodo.id ? state.currentTodo : item,
       );
-      state.items[taskIndex] = action.payload;
-      console.log(state.items[taskIndex]);
-      //   console.log(action.payload.id);
+      // const taskIndex = state.items.findIndex(
+      //   item => item.id === state.currentTodo.id,
+      // );
+      // state.items[taskIndex] = state.currentTodo;
     },
   },
 });
@@ -35,3 +33,4 @@ const slice = createSlice({
 export const { addTodos, deleteTodos, updateTodos } = slice.actions;
 export default slice.reducer;
 export const selectTodos = state => state.todos.items;
+export const selectCurrentTodo = state => state.todos.currentTodo;
