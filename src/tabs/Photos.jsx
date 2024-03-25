@@ -33,7 +33,6 @@ export const Photos = () => {
       })
       .catch(error => {
         console.log(error);
-        toast.error('fetchPhotos rejected');
       });
   }, [dispatch, page, queryName]);
 
