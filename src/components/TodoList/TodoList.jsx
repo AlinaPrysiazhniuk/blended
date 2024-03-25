@@ -3,6 +3,7 @@ import { Grid } from '../Grid/Grid';
 import { TodoListItem } from '../TodoListItem/TodoListItem';
 import { selectTodos } from '../../redux/todosSlice';
 import { selectFilterName } from '../../redux/filterSlice';
+import { Text } from '../Text/Text';
 
 export const TodoList = () => {
   const todos = useSelector(selectTodos);
@@ -14,11 +15,17 @@ export const TodoList = () => {
 
   return (
     <>
-      <Grid>
-        {filteredTodos.map((todo, index) => {
-          return <TodoListItem key={todo.id} todo={todo} number={index + 1} />;
-        })}
-      </Grid>
+      {filteredTodos.length === 0 ? (
+        <Text textAlign="center">We did not find any todos ...</Text>
+      ) : (
+        <Grid>
+          {filteredTodos.map((todo, index) => {
+            return (
+              <TodoListItem key={todo.id} todo={todo} number={index + 1} />
+            );
+          })}
+        </Grid>
+      )}
     </>
   );
 };
