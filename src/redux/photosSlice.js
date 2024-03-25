@@ -19,13 +19,17 @@ const slice = createSlice({
         state.loading = false;
 
         // Перевірка, чи відповідає поточний queryName запиту, що завершився
-        if (state.currentQuery === action.meta.arg.queryName) {
-          // Додаємо нові фотографії до вже завантажених
-          state.items = [...state.items, ...action.payload];
+        if (action.payload.length === 0) {
+          state.error = 'No photos';
         } else {
-          // Якщо queryName змінилося, оновлюємо items з новими фотографіями
-          state.currentQuery = action.meta.arg.queryName;
-          state.items = action.payload;
+          if (state.currentQuery === action.meta.arg.queryName) {
+            // Додаємо нові фотографії до вже завантажених
+            state.items = [...state.items, ...action.payload];
+          } else {
+            // Якщо queryName змінилося, оновлюємо items з новими фотографіями
+            state.currentQuery = action.meta.arg.queryName;
+            state.items = action.payload;
+          }
         }
       })
       .addCase(fetchPhotos.rejected, (state, action) => {
