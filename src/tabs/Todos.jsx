@@ -1,19 +1,22 @@
 import { FormTodos } from '../components/FormTodos/FormTodos';
-// import { useEffect, useState } from 'react';
 import { TodoList } from 'components';
 import { Filter } from 'components/Filter/Filter';
 import { useSelector } from 'react-redux';
 import { selectTodos } from '../redux/todosSlice';
+import { Text } from 'components';
 
 export const Todos = () => {
   const todos = useSelector(selectTodos);
   return (
     <>
       <FormTodos />
-      {/* <Text textAlign="center">There are no any todos ...</Text> */}
+      {todos.length === 0 && (
+        <Text textAlign="center">There are no any todos ...</Text>
+      )}
+      {/*  */}
       {todos.length !== 0 && <Filter />}
+
       <TodoList
-      // todos={todos}
       // onDelete={deleteTodo}
       // updateTodos={updateTodos}
       />
