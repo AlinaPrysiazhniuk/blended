@@ -14,7 +14,7 @@ export const fetchPhotos = createAsyncThunk(
   async ({ queryName, page }, thunkAPI) => {
     try {
       const { data } = await axios.get(
-        `search1?query=${queryName}&page=${page}`,
+        `search?query=${queryName}&page=${page}`,
       );
       return data.photos;
     } catch (error) {
