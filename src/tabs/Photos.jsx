@@ -16,16 +16,23 @@ export const Photos = () => {
     setPage(prevPage => prevPage + 1);
   };
 
+  const handleSubmit = newPage => {
+    setPage(newPage);
+  };
+
   useEffect(() => {
     if (!queryName) return;
+
     dispatch(fetchPhotos({ queryName, page }));
   }, [dispatch, page, queryName]);
 
   return (
     <>
-      <Form />
+      <Form onSubmit={handleSubmit} />
 
-      <Text textAlign="center">Let`s begin search 🔎</Text>
+      {!photosArr.length && (
+        <Text textAlign="center">Let`s begin search 🔎</Text>
+      )}
 
       {photosArr.length !== 0 && <PhotosGallery />}
       {photosArr.length > 0 && (

@@ -5,6 +5,7 @@
   text-align: start;
   width: 100%;
   word-wrap: break-word;
+  margin-bottom: 40px;
 }
 .end {
   composes: text;
@@ -24,7 +25,4 @@
 }
 .marginBottom20 {
   margin-bottom: 20px;
-}
-.marginBottom0 {
-  margin-bottom: 0;
 }
