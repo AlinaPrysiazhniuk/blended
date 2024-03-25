@@ -1,40 +1,29 @@
 import { Form, PhotosGallery, Loader, Button, Text } from 'components';
 import { useEffect, useState } from 'react';
-// import { getPhotos } from 'apiService/photos';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPhotos } from '../redux/photosOps';
 import { selectPhotos } from '../redux/photosSlice';
+import { selectQueryName } from '../redux/querySlice';
 
 export const Photos = () => {
-  const [query, setQuery] = useState('');
-  const photosArr = useSelector(selectPhotos);
-  // const [photos, setPhotos] = useState([]);
   const [page, setPage] = useState(1);
-  // const [isLoading, setIsLoading] = useState(false);
-
+  const photosArr = useSelector(selectPhotos);
   const loading = useSelector(state => state.photos.loading);
   const dispatch = useDispatch();
-
-  console.log(photosArr);
-
-  const handleSubmit = query => {
-    setQuery(query);
-    console.log('query', query);
-  };
+  const queryName = useSelector(selectQueryName);
 
   const handleLoadMore = () => {
     setPage(prevPage => prevPage + 1);
-    console.log('click');
   };
 
   useEffect(() => {
-    if (!query) return;
-    dispatch(fetchPhotos({ query, page }));
-  }, [dispatch, query, page]);
+    if (!queryName) return;
+    dispatch(fetchPhotos({ queryName, page }));
+  }, [dispatch, page, queryName]);
 
   return (
     <>
-      <Form onSubmit={handleSubmit} />
+      <Form />
 
       <Text textAlign="center">Let`s begin search 🔎</Text>
 

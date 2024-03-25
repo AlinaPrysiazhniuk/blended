@@ -13,6 +13,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import querySlice from './querySlice';
 
 const contactsPersistConfig = {
   key: 'todos',
@@ -29,6 +30,7 @@ export const store = configureStore({
     todos: persistedContactsReducer,
     filter: filterReducer,
     photos: photosReducer,
+    query: querySlice,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -11,10 +11,11 @@ axios.defaults.params = {
 
 export const fetchPhotos = createAsyncThunk(
   'photos/fetchByQuery',
-  async ({ query, page }, thunkAPI) => {
+  async ({ queryName, page }, thunkAPI) => {
     try {
-      const { data } = await axios.get(`search?query=${query}&page=${page}`);
-      console.log(data.photos);
+      const { data } = await axios.get(
+        `search?query=${queryName}&page=${page}`,
+      );
       return data.photos;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

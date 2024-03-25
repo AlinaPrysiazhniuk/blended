@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import style from './Form.module.css';
 import { FiSearch } from 'react-icons/fi';
+import { useDispatch } from 'react-redux';
+import { changeQueryName } from '../../redux/querySlice';
 
-export const Form = ({ onSubmit }) => {
+export const Form = () => {
   const [input, setInput] = useState('');
+  const dispatch = useDispatch();
 
   const handleChange = e => {
     setInput(e.target.value);
@@ -11,7 +14,7 @@ export const Form = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit(input);
+    dispatch(changeQueryName(input));
   };
 
   return (

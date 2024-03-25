@@ -7,6 +7,7 @@ const slice = createSlice({
     items: [],
     loading: false,
     error: null,
+    currentQuery: null,
   },
 
   extraReducers: builder =>
@@ -16,11 +17,20 @@ const slice = createSlice({
       })
       .addCase(fetchPhotos.fulfilled, (state, action) => {
         state.loading = false;
-        state.items = action.payload;
+
+        // Перевірка, чи відповідає поточний queryName запиту, що завершився
+        if (state.currentQuery === action.meta.arg.queryName) {
+          // Додаємо нові фотографії до вже завантажених
+          state.items = [...state.items, ...action.payload];
+        } else {
+          // Якщо queryName змінилося, оновлюємо items з новими фотографіями
+          state.currentQuery = action.meta.arg.queryName;
+          state.items = action.payload;
+        }
       })
-      .addCase(fetchPhotos.rejected, state => {
+      .addCase(fetchPhotos.rejected, (state, action) => {
         state.loading = false;
-        state.error = true;
+        state.error = action.payload;
       }),
 });
 
